@@ -1,0 +1,22 @@
+nav {
+    
+}
+
+/* body {
+    background: red;
+} */
+
+/* mobile */
+.app {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+
+nav > ul {
+    list-style-type: none;
+    /* MOBile */
+    display: flex;
+    flex-wrap: wrap;
+}
