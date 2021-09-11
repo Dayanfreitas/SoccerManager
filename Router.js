@@ -37,7 +37,8 @@ const Router = function (r) {
         
         return {
             go, 
-            back
+            back,
+            render_c
         }
     }
     
@@ -151,17 +152,12 @@ const Router = function (r) {
 
         c.querySelectorAll('[HClick]').forEach((e) => {
             e.addEventListener('click', () => {
-                try {
-                    const [controller, action] = e.attributes.hclick.value.split('.')
-                    const params = e.attributes.params && JSON.parse(e.attributes.params.value) 
-                    let name = controller.split("Controller")[0]
-                    const r = routers.find((e) => e.name == name.toLocaleLowerCase())
-                    
-                    r[controller][action](e, params)
-                }catch(e) {
-                    throw "Rotar não exite "+ e
-                    // console.log("e")
-                }
+                const [controller, action] = e.attributes.hclick.value.split('.')
+                const params = e.attributes.params && JSON.parse(e.attributes.params.value) 
+                let name = controller.split("Controller")[0]
+                const r = routers.find((e) => e.name == name.toLocaleLowerCase())
+                
+                r[controller][action](e, params)
                 
             })
         })
@@ -219,12 +215,39 @@ const Router = function (r) {
 
     }
 
+    const render_c = (e) => {
+        const nameTag = e.attributes.tag.value
+        const router = getRouter(nameTag)
+        const { TEMPLATE } = router.controller
+
+        e.id = nameTag + '_c'        
+        e.innerHTML = TEMPLATE
+
+        const c = document.querySelector('#'+nameTag+'_c')
+        actions.forEach((action) => {       
+            c.querySelectorAll("["+ action.name +"]")
+                .forEach((el) => {
+                    el.removeEventListener('click',() => {})
+                    el.addEventListener('click', () => {
+                        action.func(el)
+                    })
+                })
+        })
+        return TEMPLATE
+    }
+
+    const getRouter = (name) => {
+        // currentRouter.toLocaleLowerCase()
+        return routers.find((e) => e.name == name.toLocaleLowerCase())
+    }
+
     const getCurrentRouter = () => {
         return routers.find((e) => e.name == currentRouter.toLocaleLowerCase())
     }
 
     return {
         init,
+        // render_c
         // go,
         // back
     }

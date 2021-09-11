@@ -1,14 +1,14 @@
-function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
-
 const Database = () => {
     let MODEL = ''
     // model().insert()
     
+    const uuidv4 = () => {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
     const model = () => {
         return JSON.parse(localStorage.getItem(MODEL)) 
     }
@@ -19,6 +19,11 @@ const Database = () => {
     }
 
     const insert = (model, params) => {
+        params.id = uuidv4()
+        params.create_at = new Date()
+        params.update_at = null
+
+
         localStorage.setItem(MODEL, convert_to_base(params))
 
         // model()
@@ -42,7 +47,7 @@ const Database = () => {
     }
 
     const select = (table) => {
-        return JSON.parse(localStorage.getItem(table)) 
+        return JSON.parse(localStorage.getItem(table)) || []
     }
     
     const update = (params) => {
@@ -51,6 +56,7 @@ const Database = () => {
         
         l = l.map((e) => {
             if (e.id == id) {
+                params.update_at = new Date()
                 e = params
             }
             
@@ -78,6 +84,8 @@ const Database = () => {
 }
 
 const IModel = function() {
+ 
+
     // 1 - N
     const RELATIONS = {
         HAS_MANY: 'has_many'
@@ -108,7 +116,7 @@ const IModel = function() {
 
     const save = () => {
         // ATTR.id = new Date().getTime()
-        ATTR.id = uuidv4()
+        // ATTR.id = uuidv4()
         db.insert(TABLE_NAME, ATTR)
     }
 

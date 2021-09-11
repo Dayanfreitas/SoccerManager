@@ -49,7 +49,7 @@ const TeamsController = function(controller) {
                                 }
                                 <div HClick="TeamsController.cl" params="${HelperParams(e)}" class="container-players">
                                     Jogadores
-                                    <div class="d-flex">
+                                    <div  id="players" class="d-flex">
                                     </div>
                                 </div>
                             </div>

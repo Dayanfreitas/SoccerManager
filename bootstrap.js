@@ -1,7 +1,4 @@
 const rootObservable = Observable()
-
-
-
 import RunnerPopulate from './populate/index.js'
 RunnerPopulate()
 
@@ -32,6 +29,12 @@ const router = Router(routers).init()
 router.go('games')
 // router.go('players')
 // router.go('users')
+const App = () => {
+    const router = []
+
+}
+const app = App()
+
 
 
 document.querySelectorAll('.save-button').forEach((e) => {
@@ -56,7 +59,44 @@ document.querySelectorAll('.save-button').forEach((e) => {
 
 
 function root() {
-    // debugger
+    
+    Window.prototype.shuffleArray = arr => {
+        // Loop em todos os elementos
+        for (let i = arr.length - 1; i > 0; i--) {
+                // Escolhendo elemento aleatório
+            const j = Math.floor(Math.random() * (i + 1));
+            // Reposicionando elemento
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        // Retornando array com aleatoriedade
+        return arr;
+    }
+
+    Window.prototype.HelperDate = {
+        getDay: (Date) => {
+            const weekday = []
+            weekday[0] = "Domigo";
+            weekday[1] = "Segunda-Feira";
+            weekday[2] = "Terça-Feira";
+            weekday[3] = "Quarta-Feira";
+            weekday[4] = "Quinta-Feira";
+            weekday[5] = "Sexta-Feira";
+            weekday[6] = "Sábado";
+            
+            return weekday[Date.getDay()] 
+        },
+        getDate: (game) => {
+            const [y,m,d] = game.date.split('-')
+            let mes = m*1
+            mes = m-1
+
+            return new Date(y, mes, d, 12) 
+        },
+        formatToFont: (date) => {
+            return date.replace(/(\d\d\d\d)-(\d\d)-(\d\d)/,"$3/$2/$1")
+        }
+    }
+
     document.querySelectorAll('[router-go]').forEach((e) => {
         e.addEventListener('click', () => {
             let r = e.attributes["router-go"]['value']
@@ -70,7 +110,11 @@ function root() {
             debugger
             router.back()
         })
-    })    
+    })   
+
+    document.querySelectorAll('[tag]').forEach((e) => {
+        router.render_c(e)
+    })   
 }
 
 rootObservable.subscribe(root)

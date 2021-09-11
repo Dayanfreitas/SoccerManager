@@ -1,7 +1,6 @@
 const IController = function() {
     let CONTAINER = 'root'
     let TEMPLATE = ''
-    
 
     const HClick = (func) => {
         return `
@@ -101,11 +100,12 @@ const IController = function() {
     }
 
     const template = (t) => {
-        
-        let c = document.getElementById(CONTAINER)
-        c.innerHTML = t
-        
-        // c.querySelector('[map]')
+        // setComponente(t)
+        document.getElementById(CONTAINER).innerHTML = t        
+    }
+
+    const setComponent = (t)  => {
+        TEMPLATE = t
     }
 
     const data = () => {
@@ -123,7 +123,8 @@ const IController = function() {
             contextObservable, 
             setIndex,
             setEdit, 
-            setContainer, 
+            setContainer,
+            setComponent, 
             render, 
             index, 
             edit, 

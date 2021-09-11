@@ -4,3 +4,44 @@
     grid-template-rows: 100vh;
 }
 
+.card {
+    margin:10px;
+    border: 3px solid black;
+    box-shadow: 5px 5px 10px #22344e;
+    width: 285px;
+    min-height: 100px;
+    border-radius: 50px 20px;
+    padding: 10px;
+    background: url("https://i.pinimg.com/564x/3e/4c/35/3e4c358e3258196dadf5f992ec09bdfa.jpg");
+    background-position: center;
+    background-size: 350px;
+}
+
+.card .name {
+  padding: 0;
+  margin-top: 1em;
+  font-size: 15px;
+  color:white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.card .header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5em;
+}
+
+.card .header img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
+.card .content {
+    padding: 10px
+}
+
+.card .stars {
+    color: white;
+    font-size: 15px;
+}

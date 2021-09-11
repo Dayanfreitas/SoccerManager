@@ -34,38 +34,33 @@ const RunnerPopulate = function () {
   MenuPopulate.setList(
     [
       {
-        "name": "games",
+        "name": "Jogos Marcados",
         "icon": "gamepad",
         "router": "games"
       },
       {
-        "name": "players",
+        "name": "Jogadores",
         "icon": "users",
         "router": "players"
       },
       {
-        "name": "teams",
+        "name": "Times",
         "icon": "users",
         "router": "teams"
       },
-      {
-        "name": "configuration",
-        "icon": "cog",
-        "router": "configuration"
-      },
-      {
-        "name": "drawteam",
+      { 
+        "name": "Sorteio",
         "icon": "random",
         "router": "drawteam"
       }
     ]
   )
 
-  const TeamPopulate = Populate(Team)
-  TeamPopulate.setList([
-    { name: 'Time A' },
-    { name: 'Time B' },
-  ])
+  // const TeamPopulate = Populate(Team)
+  // TeamPopulate.setList([
+  //   // { name: 'Time A' },
+  //   // { name: 'Time B' },
+  // ])
 
   const UserPopulate = Populate(User)
   UserPopulate.setList([
@@ -84,85 +79,73 @@ const RunnerPopulate = function () {
       {
         "name": "Rafa",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Emanuel",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Matheus",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Big",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "João marcos",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Borges",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Cebola",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Dayan",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Henrique",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Miguel",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Mateus",
         "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       },
       {
         "name": "Andrick",
-        "pos": "ata",
-        "stars": 3,
-        "team_id": 1,
+        "pos": "gl",
+        "stars": 1,
         "img_src": "https://spng.pngfind.com/pngs/s/42-428449_anonymous-avatar-face-book-hd-png-download.png"
       }
     ]
