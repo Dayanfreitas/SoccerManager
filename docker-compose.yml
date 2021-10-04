@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  front:
+    build: ./app
+    volumes:
+     - ./app:/home/node/app
+    ports:
+     - 5000:5000
+    tty: true
+
+  app:
+   build: .
+   container_name: my_app
+   ports:
+     - 3000:3000
+   volumes:
+     - .:/var/www
+     - .bundle:/usr/local/bundle
+   tty: true
+   
