@@ -1,17 +1,32 @@
-import React, { Component } from 'react'
-import {Route, BrowserRouter} from 'react-router-dom'
+import React from 'react'
 
-// import Home from "./pages/Home";
-// import CreatePoint from "./pages/CreatePoint";
 import Game from './pages/games'
 import Login from './pages/login'
+import Player from './pages/players'
 
-const Routes =  () => {
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+const PrivateRouter = ({ component: Component, ...rest}) => (
+    <div>
+        <Route 
+            {...rest} 
+            render={ props => (
+                <Component {...props} />   
+            )} 
+        />
+    </div>
+)
+
+const Routes =  (props) => {
+
     return (
         <BrowserRouter>
-            <Route component={Game} path="/" exact/>
-            <Route component={Login} path="/login" exact/>
-            {/* <Route component={CreatePoint} path="/games" exact/> */}
+            <Switch>
+                <Route component={Game} path="/" exact/>
+                <Route component={Login} path="/login" exact/>
+                <PrivateRouter component={Player} nav={props.nav} path="/players" exact/>
+                <Route path='*' component={Login} />
+            </Switch>
         </BrowserRouter>
     );
 }

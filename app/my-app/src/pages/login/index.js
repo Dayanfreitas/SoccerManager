@@ -1,9 +1,4 @@
-// import logo from './logo.svg';
-
-import React, { useEffect, useState } from 'react';
-import gameServices from '../../services/gameServices';
-
-// import './App.css';
+import React, { useState } from 'react';
 
 export default function Login () {
 
