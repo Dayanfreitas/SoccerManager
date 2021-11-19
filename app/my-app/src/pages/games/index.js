@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import gameServices from '../../services/gameServices';
+import authenticationService from '../../services/authentication';
 
-import {Box, Typography, Card, CardHeader, Container } from "@material-ui/core";
+import {Box, Typography, Card, CardHeader, Container, Button } from "@material-ui/core";
 
 function Game() { 
   const [games, setGames] = useState([])
 
   useEffect(() => {
+    
     gameServices.get()
     .then((r) => {
+      console.log('r',r)
       setGames(r.data)
     })
     .catch(console.log)
+ 
   }, [])
   
   function getDate(date) {
@@ -39,9 +43,11 @@ function Game() {
 
   return (
     <Container>
+      <Button color="secondary" variant="outlined" onClick={() => { authenticationService.logout() }}>Logout</Button>
       <Typography variant="h3">
         Jogos
       </Typography>
+
       {
         renderGames(games)
       }

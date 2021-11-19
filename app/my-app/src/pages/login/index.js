@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import {FormControl, InputLabel, Input, div, Typography, Container, Button, FormHelperText, Grid, Paper } from "@material-ui/core";
-
+import {FormControl, InputLabel, Input, Typography, Container, Button, Grid } from "@material-ui/core";
 import authenticationService from '../../services/authentication';
 
 export default function Login () {
@@ -12,14 +11,13 @@ export default function Login () {
     const [password, setPassword] = useState("");
 
     const authentication = () => {
-        
-
-        console.log("Login")
-        authenticationService.post({email, password})
-
-        // console.log("email", email)
-        // console.log("password", password)
-
+        authenticationService.singIn({email, password}).then((response) => {
+            
+            console.log('response', response)
+            if (response.status == 201) {
+                history.push('/')
+            }
+        })
     } 
     
     return (
