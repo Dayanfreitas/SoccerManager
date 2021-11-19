@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  
 
-  
+  post "/authentication", to: "authentication#login"
+
   namespace :api do
-    namespace :v1 do
-      
+    namespace :v1 do           
       resources :access_types
       resources :contacts
       resources :enterprises
@@ -14,7 +13,6 @@ Rails.application.routes.draw do
       resources :players_games
       resources :positions
       resources :user
-      
     end
   end
   

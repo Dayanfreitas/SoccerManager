@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-
 import React, { useEffect, useState } from 'react';
 import gameServices from '../../services/gameServices';
 
