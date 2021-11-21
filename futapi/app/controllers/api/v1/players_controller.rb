@@ -1,5 +1,5 @@
 class Api::V1::PlayersController < Api::V1::ApiController
-    # load_and_authorize_resource
+    load_and_authorize_resource
     before_action :set_player, only: %i[update]
 
     def index

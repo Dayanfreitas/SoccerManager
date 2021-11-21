@@ -1,9 +1,9 @@
 class Api::V1::GamesController < Api::V1::ApiController
     load_and_authorize_resource
+    # before_action :require_authentication!
 
     def index
         @games = Game.all
-
         render json: @games, include: %i[enterprise]
     end
     

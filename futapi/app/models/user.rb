@@ -3,8 +3,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, 
+         :registerable,
+         :recoverable, 
+         :rememberable, 
+         :validatable
   
   # belongs_to :player
   validates :email, :name, presence: true
@@ -18,17 +21,14 @@ class User < ApplicationRecord
 
   def super_user?
     self.access_type.name.upcase == "SUDO"
-    # false
   end
 
   def admin?
     self.access_type.name.upcase == "ADMIN"
-    # false
   end
 
   def player?
     self.access_type.name.upcase == "PLAYER"
-    # false
   end
 
   def create_player
