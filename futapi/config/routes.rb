@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-
-  post "/authentication", to: "authentication#login"
+  devise_for :users, path: 'auth',
+              defaults: { format: :json },
+              path_names: {
+              },
+              controllers: {
+                sessions: 'sessions',
+              }
 
   namespace :api do
     namespace :v1 do           
