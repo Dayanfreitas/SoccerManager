@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import gameServices from '../../services/gameServices';
 import authenticationService from '../../services/authentication';
 
-import {Box, Typography, Card, CardHeader, Container, Button } from "@material-ui/core";
+import {Grid, Box, Typography, Card, CardHeader, Container, Button } from "@material-ui/core";
 
-function Game() { 
+function Game(props) {
+  const { nav } = props 
   const [games, setGames] = useState([])
 
   useEffect(() => {
@@ -42,16 +43,15 @@ function Game() {
   }
 
   return (
-    <Container>
-      <Button color="secondary" variant="outlined" onClick={() => { authenticationService.logout() }}>Logout</Button>
+    <Grid>
+      {/* <Button color="secondary" variant="outlined" onClick={() => { authenticationService.logout() }}>Logout</Button> */}
       <Typography variant="h3">
         Jogos
       </Typography>
 
-      {
-        renderGames(games)
-      }
-    </Container>
+      { renderGames(games) }
+      { nav() }
+    </Grid>
   );
 }
 

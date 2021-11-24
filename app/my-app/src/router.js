@@ -1,5 +1,9 @@
 import React from 'react'
 
+import Menu from './componentes/Menu'
+
+
+import Home from './pages/home'
 import Game from './pages/games'
 import Login from './pages/login'
 import Player from './pages/players'
@@ -18,11 +22,12 @@ const isAuthenticated = () => {
 
 const PrivateRouter = ({ component: Component, ...rest}) => (
     <div>
+        {/* {console.log('component', rest)} */}
        <Route 
             {...rest} 
             render={ props => (
                 isAuthenticated() ? (
-                    <Component {...props} />
+                    <Component {...props} nav={Menu} />
                 ) : (
                     <Redirect to={{pathname: '/login', state: {form: props.location} }} />
                 )
@@ -32,13 +37,14 @@ const PrivateRouter = ({ component: Component, ...rest}) => (
 )
 
 const Routes =  (props) => {
-
+    // console.log('props', props)
     return (
         <BrowserRouter>
             <Switch>
                 <Route component={Login} path="/login" exact/>
-                <PrivateRouter component={Game} path="/games" exact/>
-                <PrivateRouter component={Player} nav={props.nav} path="/players" exact/>
+                <PrivateRouter component={Home} props path="/" exact/>
+                <PrivateRouter component={Game} props path="/games" exact/>
+                <PrivateRouter component={Player} props nav={props.nav} path="/players" exact/>
                 {/* <PrivateRouter component={PlayerForm} nav={props.nav} path="/player/create" exact/> */}
                 <PrivateRouter component={UserForm} nav={props.nav} path="/user/create" exact/>
                 
