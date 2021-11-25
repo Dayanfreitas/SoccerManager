@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import { FormControl, InputLabel, Input, Typography, Container, Button, Grid, Box } from "@material-ui/core";
+import { FormControl, InputLabel, Input, Button, Grid, Box } from "@material-ui/core";
 import authenticationService from '../../services/authentication';
 
 export default function Login() {
