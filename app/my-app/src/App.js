@@ -1,15 +1,12 @@
-// import logo from './logo.svg';
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Menu from './componentes/Menu'
 
 import './App.css';
 
-// import {MenuIcon} from "@material-ui/icons/";
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import GamesIcon from '@material-ui/icons/Games';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+// import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+// import GamesIcon from '@material-ui/icons/Games';
+// import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+// import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 import { Box } from "@material-ui/core";
 import Router from './router'
