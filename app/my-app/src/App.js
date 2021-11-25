@@ -1,5 +1,5 @@
 import React from 'react';
-import Menu from './componentes/Menu'
+import Menu from './componentes/Menu';
 
 import './App.css';
 
@@ -8,8 +8,8 @@ import './App.css';
 // import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-import { Box } from "@material-ui/core";
-import Router from './router'
+import { Box } from '@material-ui/core';
+import Router from './router';
 
 function App() {
   return (
