@@ -58,7 +58,7 @@ function Player(props) {
         color="primary"
         variant="outlined"
         onClick={() => {
-          history.push('/user/create');
+          history.push('/user/create'); 
         }}
       >
         Adicionar
