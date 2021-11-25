@@ -43,7 +43,7 @@ const authentication = (name) => {
                 .then((r) => {
                     localStorage.setItem('X-User-Email', r.data.email)
                     localStorage.setItem('X-User-Token', r.data.authentication_token)
-                    localStorage.setItem('current_user', JSON.stringify(factoryUser(r.data)))
+                    localStorage.setItem('current_user', JSON.stringify(factoryUser(r.data)))                    
                     resolve(r)
                 })
                 .catch((error)=>{
