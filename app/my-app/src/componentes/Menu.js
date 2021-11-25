@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 import HomeIcon from '@material-ui/icons/Home';
@@ -12,10 +12,6 @@ import authenticationService from '../services/authentication'
 function Menu() {
   const history = useHistory();
   const [value, setValue] = useState("Home");
-
-  const logout = () => {
-    console.log("logout")
-  }
 
   return (
     <BottomNavigation
