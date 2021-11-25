@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 import userService from '../../services/user';
-import StarIcon from '@material-ui/icons/Star';
-import { FormControl, InputLabel, Input, Box, Typography, Grid, Button, Card, CardHeader, CardContent, Avatar, Container } from "@material-ui/core";
+// import StarIcon from '@material-ui/icons/Star';
+import { FormControl, InputLabel, Input, Box, Typography, Button, Container } from "@material-ui/core";
 
 function Player() {
     const history = useHistory();
@@ -11,21 +11,16 @@ function Player() {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    // const [differentPasswords, setDifferentPasswords] = useState('')
-    
 
     useEffect(() => {
-        // userService.get
     }, [])
 
     const canSave = () => {
-        // setDifferentPasswords('')
         if (!email || !name || !password || !confirmPassword) {
             return true
         }
 
-        if (password != confirmPassword) {
-            // setDifferentPasswords('different passwords')
+        if (password !== confirmPassword) {
             return true
         }
         
@@ -36,7 +31,7 @@ function Player() {
         userService.create({
             name, email, password, access_type_id: 3
         }).then((r) => {
-            if (r.status == 201) {
+            if (r.status === 201) {
                 history.push('/')
             }
         })
@@ -83,10 +78,6 @@ function Player() {
                     marginTop:10,
                     gridTemplateColumns: 'repeat(1, 1fr)',
                 }}>
-                    {/* <div>{
-                        differentPasswords ? differentPasswords : ''
-                    }</div> */}
-
                     <Button color="primary" variant="outlined" disabled={canSave()} onClick={() => {save()}}>Criar</Button>
                     <Button color="secondary" variant="outlined" onClick={() => { history.push('/') }}>Voltar</Button>
                 </Box >

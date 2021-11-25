@@ -14,7 +14,7 @@ export default function Login() {
         authenticationService.singIn({ email, password }).then((response) => {
 
             console.log('response', response)
-            if (response.status == 201) {
+            if (response.status === 201) {
                 history.push('/')
                 window.location.reload(true)
             }

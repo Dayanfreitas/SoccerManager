@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 import { Container, Grid } from "@material-ui/core";
 
 import authenticationService from "../services/authentication"
 
-export default function Home(props) {
+function Home(props) {
     const { nav } = props
-    const history = useHistory(); 
     const [currentUser, setCurrentUser] = useState({
         name: "Dayan Freitas" 
     });
 
-
     useEffect(() => {
         setCurrentUser(authenticationService.getCurrentUser())
     }, [])
-
 
     return (
         <div>
@@ -37,3 +35,9 @@ export default function Home(props) {
         </div>
     )
 }
+
+Home.propTypes = {
+    nav: PropTypes.func
+}
+
+export default Home

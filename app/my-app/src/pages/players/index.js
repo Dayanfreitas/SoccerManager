@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import playerServices from '../../services/playersServices';
 
 import StarIcon from '@material-ui/icons/Star';
-import { Grid, Box, Typography, Card, CardHeader, CardContent, Avatar, Container } from "@material-ui/core";
+import { Grid, Box, Typography, Card, CardHeader, CardContent, Avatar, Button } from "@material-ui/core";
 
 function Player(props) {
   const { nav } = props
@@ -57,6 +57,8 @@ function Player(props) {
 
   return (
     <Grid>
+      <Button color="primary" variant="outlined" onClick={()=>{}}>Adicionar</Button>
+                    
       <Typography variant="h3">
         Players
       </Typography>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import gameServices from '../../services/gameServices';
-import authenticationService from '../../services/authentication';
-
-import {Grid, Box, Typography, Card, CardHeader, Container, Button } from "@material-ui/core";
+import {Grid, Box, Typography, Card, CardHeader } from "@material-ui/core";
 
 function Game(props) {
   const { nav } = props 
@@ -53,6 +52,10 @@ function Game(props) {
       { nav() }
     </Grid>
   );
+}
+
+Game.propsType = {
+  nav: PropTypes.func
 }
 
 export default Game;

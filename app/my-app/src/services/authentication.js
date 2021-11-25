@@ -22,7 +22,7 @@ const authentication = (name) => {
     return {
         getCurrentUser,
         logout: (param)=> {
-            return new Promise ((resolve, reject) => {
+            return new Promise ((resolve) => {
                 apiAuth.delete(name+'/sign_out', param)
                 .then((r) => {                     
                     localStorage.removeItem('X-User-Email')
@@ -38,7 +38,7 @@ const authentication = (name) => {
             })
         },
         singIn: (param) => {            
-            return new Promise ((resolve, reject) => {
+            return new Promise ((resolve) => {
                 apiAuth.post(name+'/sign_in', param)
                 .then((r) => {
                     localStorage.setItem('X-User-Email', r.data.email)
