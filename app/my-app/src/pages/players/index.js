@@ -1,6 +1,6 @@
-// import logo from './logo.svg';
-
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import playerServices from '../../services/playersServices';
 
 import StarIcon from '@material-ui/icons/Star';
@@ -8,6 +8,7 @@ import { Grid, Box, Typography, Card, CardHeader, CardContent, Avatar, Button } 
 
 function Player(props) {
   const { nav } = props
+  const history = useHistory()
   const [players, setPlayer] = useState([])
 
   useEffect(() => {
@@ -57,7 +58,7 @@ function Player(props) {
 
   return (
     <Grid>
-      <Button color="primary" variant="outlined" onClick={()=>{}}>Adicionar</Button>
+      <Button color="primary" variant="outlined" onClick={() => {history.push('/user/create')}}>Adicionar</Button>
                     
       <Typography variant="h3">
         Players
