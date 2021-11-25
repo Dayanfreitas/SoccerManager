@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Card (props) {
-  console.log(props)
+  // console.log(props)
+  // propTypes: {
+    // name: PropTypes.string.isRequired,
+  // },
   
   return (
     <div>
@@ -13,6 +16,10 @@ function Card (props) {
   );
 
   
+}
+
+Card.propTypes = {
+  player: PropTypes.object.isRequired
 }
 
 export default Card
