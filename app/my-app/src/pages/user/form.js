@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
+import FormikFormHelperText from '../../componentes/FormikFormHelperText'
 import * as Yup from 'yup';
 
 import userService from '../../services/user';
@@ -12,7 +13,6 @@ import {
   Typography,
   Button,
   Container,
-  FormHelperText,
 } from '@material-ui/core';
 
 function Player() {
@@ -59,18 +59,6 @@ function Player() {
     });
   };
 
-  const FormikFormHelperText = (props) => {
-    return (
-      <div>
-        {formik.touched[props.name] && formik.errors[props.name] ? (
-          <FormHelperText>{formik.errors[props.name]}</FormHelperText>
-        ) : (
-          ''
-        )}
-      </div>
-    );
-  };
-
   return (
     <Container>
       <Typography variant="h4">Formulário de User</Typography>
@@ -99,7 +87,7 @@ function Player() {
               value={formik.values.email}
               placeholder="email@gmail.com"
             />
-            <FormikFormHelperText name="email"></FormikFormHelperText>
+            <FormikFormHelperText formik={formik} name="email"></FormikFormHelperText>
           </FormControl>
 
           <FormControl
@@ -115,7 +103,7 @@ function Player() {
               value={formik.values.name}
               placeholder="Name"
             />
-            <FormikFormHelperText name="name"></FormikFormHelperText>
+            <FormikFormHelperText formik={formik} name="name"></FormikFormHelperText>
           </FormControl>
 
           <FormControl
@@ -133,7 +121,7 @@ function Player() {
               error={formik.touched.password && Boolean(formik.errors.password)}
               placeholder="***"
             />
-            <FormikFormHelperText name="password"></FormikFormHelperText>
+            <FormikFormHelperText formik={formik} name="password"></FormikFormHelperText>
           </FormControl>
 
           <FormControl
@@ -159,7 +147,7 @@ function Player() {
               }
               placeholder="***"
             />
-            <FormikFormHelperText name="password_confirm"></FormikFormHelperText>
+            <FormikFormHelperText formik={formik} name="password_confirm"></FormikFormHelperText>
           </FormControl>
         </Box>
 
