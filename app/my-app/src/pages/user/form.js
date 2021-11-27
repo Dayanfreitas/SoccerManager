@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
-import FormikFormHelperText from '../../componentes/FormikFormHelperText'
+import FormikFormHelperText from '../../componentes/FormikFormHelperText';
 import * as Yup from 'yup';
 
 import userService from '../../services/user';
@@ -87,7 +87,10 @@ function Player() {
               value={formik.values.email}
               placeholder="email@gmail.com"
             />
-            <FormikFormHelperText formik={formik} name="email"></FormikFormHelperText>
+            <FormikFormHelperText
+              formik={formik}
+              name="email"
+            ></FormikFormHelperText>
           </FormControl>
 
           <FormControl
@@ -103,7 +106,10 @@ function Player() {
               value={formik.values.name}
               placeholder="Name"
             />
-            <FormikFormHelperText formik={formik} name="name"></FormikFormHelperText>
+            <FormikFormHelperText
+              formik={formik}
+              name="name"
+            ></FormikFormHelperText>
           </FormControl>
 
           <FormControl
@@ -121,7 +127,10 @@ function Player() {
               error={formik.touched.password && Boolean(formik.errors.password)}
               placeholder="***"
             />
-            <FormikFormHelperText formik={formik} name="password"></FormikFormHelperText>
+            <FormikFormHelperText
+              formik={formik}
+              name="password"
+            ></FormikFormHelperText>
           </FormControl>
 
           <FormControl
@@ -147,7 +156,10 @@ function Player() {
               }
               placeholder="***"
             />
-            <FormikFormHelperText formik={formik} name="password_confirm"></FormikFormHelperText>
+            <FormikFormHelperText
+              formik={formik}
+              name="password_confirm"
+            ></FormikFormHelperText>
           </FormControl>
         </Box>
 
