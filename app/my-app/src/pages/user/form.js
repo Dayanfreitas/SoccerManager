@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 import userService from '../../services/user';
 import {
@@ -12,22 +12,27 @@ import {
   Typography,
   Button,
   Container,
-  FormHelperText
+  FormHelperText,
 } from '@material-ui/core';
 
 function Player() {
   const history = useHistory();
-  
-  useEffect(() => {
-  }, []);
+
+  useEffect(() => {}, []);
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("O nome é obrigatório"),
-    email: Yup.string().email("Insira um e-mail válido").required("O email é obrigatório"),
-    password: Yup.string().min(6, "No mínimo 6 caracteres").required("A senha é obrigatória"),
-    password_confirm: Yup.string().oneOf([Yup.ref("password"), null], "A senha não corresponde").required("Confirmação de senha é obrigatória"),
+    name: Yup.string().required('O nome é obrigatório'),
+    email: Yup.string()
+      .email('Insira um e-mail válido')
+      .required('O email é obrigatório'),
+    password: Yup.string()
+      .min(6, 'No mínimo 6 caracteres')
+      .required('A senha é obrigatória'),
+    password_confirm: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'A senha não corresponde')
+      .required('Confirmação de senha é obrigatória'),
   });
-  
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -38,46 +43,39 @@ function Player() {
     validationSchema,
     enableReinitialize: true,
     onSubmit: (values) => {
-      const {
-        name,
-        email,
-        password
-      }  = values
-      save({name, email, password});
-    }
+      const { name, email, password } = values;
+      save({ name, email, password });
+    },
   });
 
-
   const save = (params) => {
-    //TODO: PASSA PARA O BACK 
-    params.access_type_id = 3
+    //TODO: PASSA PARA O BACK
+    params.access_type_id = 3;
 
-    userService
-      .create(params)
-      .then((r) => {
-        if (r.status === 201) {
-          history.push('/players');
-        }
-      });
+    userService.create(params).then((r) => {
+      if (r.status === 201) {
+        history.push('/players');
+      }
+    });
   };
 
   const FormikFormHelperText = (props) => {
     return (
       <div>
-        {
-          formik.touched[props.name] && formik.errors[props.name] ? 
-          <FormHelperText>{formik.errors[props.name]}</FormHelperText> :
+        {formik.touched[props.name] && formik.errors[props.name] ? (
+          <FormHelperText>{formik.errors[props.name]}</FormHelperText>
+        ) : (
           ''
-        }
+        )}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <Container>
       <Typography variant="h4">Formulário de User</Typography>
       <form
-        onSubmit={formik.handleSubmit} 
+        onSubmit={formik.handleSubmit}
         className={!formik.isValid ? 'not-valid' : ''}
         autoComplete="off"
       >
@@ -88,7 +86,10 @@ function Player() {
             gridTemplateColumns: 'repeat(2, 1fr)',
           }}
         >
-          <FormControl required error={formik.touched.email && Boolean(formik.errors.email)}>
+          <FormControl
+            required
+            error={formik.touched.email && Boolean(formik.errors.email)}
+          >
             <InputLabel htmlFor="email">Email</InputLabel>
             <Input
               id="email"
@@ -101,7 +102,10 @@ function Player() {
             <FormikFormHelperText name="email"></FormikFormHelperText>
           </FormControl>
 
-          <FormControl required error={formik.touched.name && Boolean(formik.errors.name)}>
+          <FormControl
+            required
+            error={formik.touched.name && Boolean(formik.errors.name)}
+          >
             <InputLabel htmlFor="name">Name</InputLabel>
             <Input
               id="name"
@@ -114,7 +118,10 @@ function Player() {
             <FormikFormHelperText name="name"></FormikFormHelperText>
           </FormControl>
 
-          <FormControl required error={formik.touched.password && Boolean(formik.errors.password)}>
+          <FormControl
+            required
+            error={formik.touched.password && Boolean(formik.errors.password)}
+          >
             <InputLabel htmlFor="password">Senha</InputLabel>
             <Input
               type="password"
@@ -129,7 +136,13 @@ function Player() {
             <FormikFormHelperText name="password"></FormikFormHelperText>
           </FormControl>
 
-          <FormControl required error={formik.touched.password_confirm && Boolean(formik.errors.password_confirm)}>
+          <FormControl
+            required
+            error={
+              formik.touched.password_confirm &&
+              Boolean(formik.errors.password_confirm)
+            }
+          >
             <InputLabel htmlFor="password_confirm">
               Confirmação de senha
             </InputLabel>
@@ -140,7 +153,10 @@ function Player() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password_confirm}
-              error={formik.touched.password_confirm && Boolean(formik.errors.password_confirm)}
+              error={
+                formik.touched.password_confirm &&
+                Boolean(formik.errors.password_confirm)
+              }
               placeholder="***"
             />
             <FormikFormHelperText name="password_confirm"></FormikFormHelperText>
