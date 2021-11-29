@@ -5,6 +5,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import GamesIcon from '@material-ui/icons/Games';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import authenticationService from '../services/authentication';
@@ -48,6 +49,14 @@ function Menu() {
         icon={<PeopleAltIcon />}
         onClick={() => {
           history.push('/players');
+        }}
+      />
+      <BottomNavigationAction
+        label="Configurações"
+        value="Configurações"
+        icon={<SettingsIcon />}
+        onClick={() => {
+          history.push('/user/configuration');
         }}
       />
       <BottomNavigationAction

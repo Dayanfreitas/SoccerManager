@@ -15,7 +15,7 @@ function FormikFormHelperText(props) {
 }
 
 FormikFormHelperText.propTypes = {
-  formik: PropTypes.func.isRequired,
+  formik: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
 };
 

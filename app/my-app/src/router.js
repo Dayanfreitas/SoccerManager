@@ -8,6 +8,7 @@ import Login from './pages/login';
 import Player from './pages/players';
 
 import UserForm from './pages/user/form';
+import UserConfig from './pages/user/configuration';
 
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
@@ -59,6 +60,12 @@ const Routes = (props) => {
           component={UserForm}
           nav={props.nav}
           path="/user/create"
+          exact
+        />
+        <PrivateRouter
+          component={UserConfig}
+          nav={props.nav}
+          path="/user/configuration"
           exact
         />
 

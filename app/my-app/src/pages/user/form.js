@@ -15,7 +15,7 @@ import {
   Container,
 } from '@material-ui/core';
 
-function Player() {
+function UserConfig() {
   const history = useHistory();
 
   useEffect(() => {}, []);
@@ -195,4 +195,4 @@ function Player() {
   );
 }
 
-export default Player;
+export default UserConfig;
