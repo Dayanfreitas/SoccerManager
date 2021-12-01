@@ -28,7 +28,7 @@ function Player() {
   const [currentUser, setCurrentUser] = useState({
     name: '',
     number: '',
-    position: { initials: '' },
+    position: { id: '' },
   });
   const [positions, setPositions] = useState([]);
 
@@ -45,30 +45,28 @@ function Player() {
   const validationSchema = Yup.object({
     name: Yup.string().required('O nome é obrigatório'),
     number: Yup.number().required('O número é obrigatório'),
-    position: Yup.string().required('Posição é obrigatória'),
+    position: Yup.number().required('Posição é obrigatória'),
   });
 
   const formik = useFormik({
     initialValues: {
       name: currentUser.name,
       number: currentUser.number,
-      position: currentUser.position.initials,
+      position: currentUser.position.id,
     },
     validationSchema,
     enableReinitialize: true,
     onSubmit: (values) => {
-      const { name, email, password } = values;
-      save({ name, email, password });
+      values.id = currentUser.id
+      save(values);
     },
   });
 
   const save = (params) => {
-    //TODO: PASSA PARA O BACK
-    params.access_type_id = 3;
-
-    userService.create(params).then((r) => {
+    playersServices.update(params).then((r) => {
       if (r.status === 201) {
-        history.push('/players');
+        debugger;
+        // history.push('/players');
       }
     });
   };
@@ -80,7 +78,11 @@ function Player() {
         className={!formik.isValid ? 'not-valid' : ''}
         autoComplete="off"
       >
-        <FormControl fullWidth required error={formik.touched.name && Boolean(formik.errors.name)}>
+        <FormControl
+          fullWidth
+          required
+          error={formik.touched.name && Boolean(formik.errors.name)}
+        >
           <InputLabel htmlFor="name">Nome da camisa</InputLabel>
           <Input
             id="name"
@@ -90,28 +92,39 @@ function Player() {
             value={formik.values.name}
             maxLength="10"
           />
-          <FormikFormHelperText formik={formik} name="name"/>
+          <FormikFormHelperText formik={formik} name="name" />
         </FormControl>
 
-        <FormControl fullWidth required error={formik.touched.number && Boolean(formik.errors.number)}>
+        <FormControl
+          fullWidth
+          required
+          error={formik.touched.number && Boolean(formik.errors.number)}
+        >
           <InputLabel>Nª da camisa</InputLabel>
           <Input
             id="number"
             name="number"
             disabled
             value={formik.values.number}
+            onChange={formik.handleChange}
           />
           <ButtonGroup>
             {/* <Button type="button">Prev</Button> */}
-            <Button type="button">01</Button>
-            <Button type="button">02</Button>
+            {/* <Button onChange={formik.handleChange} type="button" data-number="01" value="01" onClick={()=>{ */}
+            {/* formik.values.number="10" */}
+            {/* console.log(formik)}}>01</Button> */}
+            {/* <Button type="button" data-number="02" value="02" onClick={(e)=>{formik.values.number = e.target.dataset.number}}>02</Button> */}
             {/* <Button type="button">Next</Button> */}
           </ButtonGroup>
 
-          <FormikFormHelperText formik={formik} name="number"/>
+          <FormikFormHelperText formik={formik} name="number" />
         </FormControl>
 
-        <FormControl fullWidth required error={formik.touched.position && Boolean(formik.errors.position)}>
+        <FormControl
+          fullWidth
+          required
+          error={formik.touched.position && Boolean(formik.errors.position)}
+        >
           <InputLabel required>Posição</InputLabel>
           <Select
             label="Posição"
@@ -128,13 +141,13 @@ function Player() {
             }
             {positions.map((e) => {
               return (
-                <MenuItem key={e.id} value={e.initials}>
+                <MenuItem key={e.id} value={e.id}>
                   {e.name} - {e.initials}
                 </MenuItem>
               );
             })}
           </Select>
-          <FormikFormHelperText formik={formik} name="position"/>
+          <FormikFormHelperText formik={formik} name="position" />
         </FormControl>
 
         <Grid style={{ marginTop: 10 }}>
