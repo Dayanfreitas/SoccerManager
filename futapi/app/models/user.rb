@@ -9,11 +9,11 @@ class User < ApplicationRecord
          :rememberable, 
          :validatable
   
-  # belongs_to :player
   validates :email, :name, presence: true
       
   belongs_to :access_type
-  has_one :player
+  has_one :player, dependent: :destroy
+  has_one :statistic
   has_many :games
   has_one_attached :image
 

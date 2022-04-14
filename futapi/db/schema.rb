@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_26_190833) do
+ActiveRecord::Schema.define(version: 2022_04_10_225606) do
 
   create_table "access_types", force: :cascade do |t|
     t.string "name"
@@ -92,6 +92,16 @@ ActiveRecord::Schema.define(version: 2021_09_26_190833) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "statistics", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "goals"
+    t.integer "assistance"
+    t.integer "games"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_statistics_on_user_id"
+  end
+
   create_table "tests", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -123,5 +133,6 @@ ActiveRecord::Schema.define(version: 2021_09_26_190833) do
   add_foreign_key "player_games", "players"
   add_foreign_key "players", "positions"
   add_foreign_key "players", "users"
+  add_foreign_key "statistics", "users"
   add_foreign_key "users", "access_types"
 end

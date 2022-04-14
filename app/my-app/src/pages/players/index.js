@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import playerServices from '../../services/playersServices';
 
 import StarIcon from '@material-ui/icons/Star';
+import AddIcon from '@material-ui/icons/Add';
+
 import {
   Grid,
   Box,
@@ -16,7 +18,6 @@ import {
 } from '@material-ui/core';
 
 function Player(props) {
-  const { nav } = props;
   const history = useHistory();
   const [players, setPlayer] = useState([]);
 
@@ -38,45 +39,44 @@ function Player(props) {
   function renderPlayer(players) {
     return players.map((player) => {
       return (
-        <Box sx={{ m: 2 }}>
+        <Grid item sm={12} md={12}>
           <Card key={player.id}>
             <CardHeader
-              avatar={<Avatar aria-label="recipe">P</Avatar>}
+              avatar={<Avatar aria-label="recipe">J</Avatar>}
               title={player.name}
               subheader={player.number + ' - ' + player.position.name}
             ></CardHeader>
             <CardContent>{renderStars(player.stars)}</CardContent>
           </Card>
-        </Box>
+        </Grid>
       );
     });
   }
 
   return (
-    <Grid>
-      <Button
-        color="primary"
-        variant="outlined"
-        onClick={() => {
-          history.push('/user/create');
-        }}
+    <Box sx={{p: 2, boxShadow:1}}>
+      <Grid
+        container
+        rowSpacing={1} 
+        direction="row"
+        justifyContent="space-between"
       >
-        Adicionar
-      </Button>
-
-      <Typography variant="h3">Players</Typography>
-
-      <Box
-        sx={{
-          display: 'grid',
-          gap: 1,
-          gridTemplateColumns: 'repeat(3, 1fr)',
-        }}
-      >
-        {renderPlayer(players)}
-      </Box>
-      {nav()}
-    </Grid>
+        <Typography variant="h3" color="primary">Jogadores</Typography>
+        <Button
+          color="primary"
+          variant="outlined"
+          onClick={() => {
+            history.push('/user/create');
+          }}
+        >
+          <AddIcon/> Adicionar
+        </Button>
+      </Grid>
+     
+      <Grid container spacing={2}>
+        { renderPlayer(players) }
+      </Grid>
+    </Box>
   );
 }
 

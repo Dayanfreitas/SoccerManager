@@ -71,6 +71,7 @@ const Routes = (props) => {
 
         {/* <Route path='*' component={Game} /> */}
       </Switch>
+      <Menu/>
     </BrowserRouter>
   );
 };

@@ -43,12 +43,11 @@ function Game(props) {
 
   function renderGames(games) {
     return games.map((game) => {
-      console.log(game);
       return (
         <Box sx={{ m: 2 }}>
           <Card key={game.id}>
             <CardHeader
-              title={'Jogo ' + game.enterprise.name}
+              title={'Jogo na quadra do ' + game.enterprise.name}
               subheader={getDate(game.date)}
             ></CardHeader>
           </Card>
@@ -58,13 +57,12 @@ function Game(props) {
   }
 
   return (
-    <Grid>
-      {/* <Button color="secondary" variant="outlined" onClick={() => { authenticationService.logout() }}>Logout</Button> */}
-      <Typography variant="h3">Jogos</Typography>
-
-      {renderGames(games)}
-      {nav()}
-    </Grid>
+    <Box sx={{ m: 2 }}>
+      <Typography variant="h4" color="primary" component="h2">Jogos</Typography>      
+      {
+        renderGames(games)
+      }
+    </Box>
   );
 }
 

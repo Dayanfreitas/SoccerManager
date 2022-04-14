@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: one
+  goals: 1
+  assistance: 1
+  games: 
+
+two:
+  user_id: two
+  goals: 1
+  assistance: 1
+  games: 

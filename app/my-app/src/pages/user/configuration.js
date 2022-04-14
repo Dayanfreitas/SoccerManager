@@ -7,8 +7,7 @@ import * as Yup from 'yup';
 
 import userService from '../../services/user';
 import positionsService from '../../services/positions';
-import authentication from '../../services/authentication';
-
+import authenticationService from '../../services/authentication';
 import playersServices from '../../services/playersServices';
 
 import {
@@ -18,28 +17,51 @@ import {
   Input,
   Grid,
   Button,
-  ButtonGroup,
   Select,
   MenuItem,
+  Typography
 } from '@material-ui/core';
 
 function Player() {
   const history = useHistory();
+
   const [currentUser, setCurrentUser] = useState({
     name: '',
     number: '',
-    position: { id: '' },
+    position: {id: 0},
   });
   const [positions, setPositions] = useState([]);
 
-  useEffect(() => {
-    playersServices
-      .getByUserId(authentication.getCurrentUser().id)
-      .then(setCurrentUser);
+  async function loadUsersAndStatistics() {
+    const { id } = authenticationService.getCurrentUser();
+    const responseUsers = await userService.getUserByID(id);
+    
+    if (!responseUsers.status == 200)
+      return;
 
-    positionsService.get().then((r) => {
-      setPositions(r.data);
+    const { data } = responseUsers;
+    const { user } = data;
+
+    setCurrentUser({
+      id: user.id,
+      name: user.name,
+      number: user.player.number,
+      position: {id: user.player.position_id}
     });
+  }
+
+  async function loadPositions() {
+    const responsePositions = await positionsService.get();  
+    if (!responsePositions.status == 200)
+      return;
+
+    const { data } = responsePositions;
+    setPositions(data)
+  }
+
+  useEffect(() => {
+    loadUsersAndStatistics()
+    loadPositions()
   }, []);
 
   const validationSchema = Yup.object({
@@ -65,14 +87,15 @@ function Player() {
   const save = (params) => {
     playersServices.update(params).then((r) => {
       if (r.status === 201) {
-        debugger;
-        // history.push('/players');
+        history.push('/players');
       }
     });
   };
 
   return (
     <Container>
+      <Typography variant="h4" color="primary" component="h2">Configurações</Typography>
+
       <form
         onSubmit={formik.handleSubmit}
         className={!formik.isValid ? 'not-valid' : ''}
@@ -108,15 +131,6 @@ function Player() {
             value={formik.values.number}
             onChange={formik.handleChange}
           />
-          <ButtonGroup>
-            {/* <Button type="button">Prev</Button> */}
-            {/* <Button onChange={formik.handleChange} type="button" data-number="01" value="01" onClick={()=>{ */}
-            {/* formik.values.number="10" */}
-            {/* console.log(formik)}}>01</Button> */}
-            {/* <Button type="button" data-number="02" value="02" onClick={(e)=>{formik.values.number = e.target.dataset.number}}>02</Button> */}
-            {/* <Button type="button">Next</Button> */}
-          </ButtonGroup>
-
           <FormikFormHelperText formik={formik} name="number" />
         </FormControl>
 
@@ -136,7 +150,7 @@ function Player() {
           >
             {
               <MenuItem key="" value="">
-                <i>None</i>
+                Selecione
               </MenuItem>
             }
             {positions.map((e) => {
@@ -158,7 +172,7 @@ function Player() {
             variant="outlined"
             disabled={!formik.isValid}
           >
-            Criar
+            Salvar
           </Button>
         </Grid>
       </form>

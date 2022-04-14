@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
     include CanCan::ControllerAdditions
 
     rescue_from CanCan::AccessDenied do |exception|
+        byebug
         Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
         render json: {
             errors: "Não tem acesso"

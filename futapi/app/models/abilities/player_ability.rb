@@ -4,6 +4,7 @@ module Abilities
         def initialize(user)
             super()
             can :read, PlayerGame
+            can :read, Position
             can %i[create update destroy], PlayerGame, player_id: user.player.id
             can %i[read], User, id: user.id
         end

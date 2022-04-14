@@ -15,6 +15,10 @@ class Api::V1::UserController < Api::V1::ApiController
         end
     end
     
+    def show
+        render json: { ok: true, user: @user.as_json(include: [:statistic, :player])}
+    end
+
     def update
         render json: @user.errors, status: :unprocessable_entity unless @user.update(update_params)
     end
