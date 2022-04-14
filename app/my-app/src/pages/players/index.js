@@ -31,7 +31,7 @@ function Player(props) {
   }, []);
 
   function renderStars(stars) {
-    return Array.from(Array(stars * 1)).map((index) => {
+    return Array.from(Array(stars * 1)).map((_, index) => {
       return <StarIcon key={index} />;
     });
   }
@@ -39,8 +39,8 @@ function Player(props) {
   function renderPlayer(players) {
     return players.map((player) => {
       return (
-        <Grid item sm={12} md={12}>
-          <Card key={player.id}>
+        <Grid key={player.id} item xs={12} sm={4} md={6}>
+          <Card>
             <CardHeader
               avatar={<Avatar aria-label="recipe">J</Avatar>}
               title={player.name}
@@ -57,7 +57,6 @@ function Player(props) {
     <Box sx={{p: 2, boxShadow:1}}>
       <Grid
         container
-        rowSpacing={1} 
         direction="row"
         justifyContent="space-between"
       >
@@ -73,7 +72,10 @@ function Player(props) {
         </Button>
       </Grid>
      
-      <Grid container spacing={2}>
+      <Grid 
+        container 
+        spacing={2}
+        >
         { renderPlayer(players) }
       </Grid>
     </Box>

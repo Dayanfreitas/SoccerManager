@@ -1,5 +1,5 @@
 import React from 'react';
-import Menu from './componentes/Menu';
+// import Menu from './componentes/Menu';
 
 import './App.css';
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Box sx={{ height: '100vh', flexGrow: 1, p: 2 }}>
-        <Router nav={Menu}></Router>
+        <Router></Router>
       </Box>
     </>
   );

@@ -21,7 +21,6 @@ const isAuthenticated = () => {
 
 const PrivateRouter = ({ component: Component, ...rest }) => (
   <div>
-    {/* {console.log('component', rest)} */}
     <Route
       {...rest}
       render={(props) =>
@@ -41,7 +40,6 @@ const PrivateRouter = ({ component: Component, ...rest }) => (
 );
 
 const Routes = (props) => {
-  // console.log('props', props)
   return (
     <BrowserRouter>
       <Switch>
@@ -51,27 +49,28 @@ const Routes = (props) => {
         <PrivateRouter
           component={Player}
           props
-          nav={props.nav}
+          nav={props}
           path="/players"
           exact
         />
         {/* <PrivateRouter component={PlayerForm} nav={props.nav} path="/player/create" exact/> */}
         <PrivateRouter
           component={UserForm}
-          nav={props.nav}
+          nav={props}
           path="/user/create"
           exact
         />
         <PrivateRouter
           component={UserConfig}
-          nav={props.nav}
+          nav={props}
           path="/user/configuration"
           exact
         />
-
         {/* <Route path='*' component={Game} /> */}
       </Switch>
-      <Menu/>
+      {
+        isAuthenticated() ? <Menu/> : <></>
+      }
     </BrowserRouter>
   );
 };

@@ -36,7 +36,7 @@ export default function Login() {
       justify="center"
       style={{ minHeight: '100vh' }}
     >
-      <Grid item xs={12}>
+      <Grid item xs={12} md={12} lg={12}>
         <form>
           <Box
             sx={{
