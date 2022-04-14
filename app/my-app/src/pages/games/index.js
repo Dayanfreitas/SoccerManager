@@ -11,7 +11,6 @@ function Game(props) {
     gameServices
       .get()
       .then((r) => {
-        console.log('r', r);
         setGames(r.data);
       })
       .catch(console.log);
@@ -44,8 +43,8 @@ function Game(props) {
   function renderGames(games) {
     return games.map((game) => {
       return (
-        <Box sx={{ m: 2 }}>
-          <Card key={game.id}>
+        <Box key={game.id} sx={{ m: 2 }}>
+          <Card>
             <CardHeader
               title={'Jogo na quadra do ' + game.enterprise.name}
               subheader={getDate(game.date)}
