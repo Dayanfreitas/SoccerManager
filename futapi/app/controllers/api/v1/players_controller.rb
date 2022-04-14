@@ -11,7 +11,7 @@ class Api::V1::PlayersController < Api::V1::ApiController
         @player = Player.new(create_params)
 
         if @player.save
-            render json: @player
+            render json: @player, status: :ok
         else
             render json: @player.errors, status: :unprocessable_entity
         end
@@ -19,7 +19,8 @@ class Api::V1::PlayersController < Api::V1::ApiController
 
     def update 
         if @player.update(create_params)
-            render json: @player
+            @player.user.update(name: @player.name)
+            render json: @player, status: :ok
         else
             render json: @player.errors, status: :unprocessable_entity
         end
